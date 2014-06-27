@@ -41,7 +41,7 @@ public class processor {
 		OntModel oModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM, dModel);
 		StmtIterator iter = oModel.listStatements();
 		
-		/** while (iter.hasNext())   
+		/* while (iter.hasNext())   
 	        {  
 	            Statement stmt = iter.nextStatement(); // get next statement  
 	            Resource subject = stmt.getSubject(); // get the subject  
@@ -60,7 +60,7 @@ public class processor {
 	            System.out.println(" .");   
 	            
 	        } 
-		**/
+		*/
 		//
 		Map<String, String> prefixMap = oModel.getNsPrefixMap();
 		Set<Entry<String, String>> ss = prefixMap.entrySet();
@@ -622,6 +622,9 @@ public class processor {
 				/*if(!valueSub.startsWith("http:")){
 					valueSub = "_:" + valueSub;
 				}*/
+				//2014-05-20
+				valueSub = valueSub.replace(" ", "%20");
+				valueSub = valueSub.replace(",", "%2C");
 				if(tm.subjectMap.hasClass){
 					List<String> tmpStr = tm.subjectMap.valueClass;
 					for (int i=0; i<tmpStr.size(); i++){
